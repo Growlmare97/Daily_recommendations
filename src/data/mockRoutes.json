@@ -1,0 +1,16 @@
+[
+  {"id":"r1","from":"London","to":"Paris","mode":"train","operator":"Eurostar","price":69,"durationMinutes":150,"transfers":0,"departureTime":"07:30","arrivalTime":"11:00","bookingUrl":"https://example.com/book/train1"},
+  {"id":"r2","from":"London","to":"Paris","mode":"flight","operator":"Air France","price":59,"durationMinutes":80,"transfers":0,"departureTime":"09:10","arrivalTime":"11:30","bookingUrl":"https://example.com/book/flight1"},
+  {"id":"r3","from":"London","to":"Amsterdam","mode":"flight","operator":"KLM","price":62,"durationMinutes":70,"transfers":0,"departureTime":"08:25","arrivalTime":"10:35","bookingUrl":"https://example.com/book/flight2"},
+  {"id":"r4","from":"London","to":"Amsterdam","mode":"train","operator":"Eurostar+NS","price":95,"durationMinutes":250,"transfers":1,"departureTime":"06:20","arrivalTime":"11:30","bookingUrl":"https://example.com/book/train2"},
+  {"id":"r5","from":"London","to":"Prague","mode":"flight","operator":"easyJet","price":49,"durationMinutes":115,"transfers":0,"departureTime":"12:20","arrivalTime":"15:15","bookingUrl":"https://example.com/book/flight3"},
+  {"id":"r6","from":"London","to":"Berlin","mode":"flight","operator":"Ryanair","price":45,"durationMinutes":105,"transfers":0,"departureTime":"14:00","arrivalTime":"16:45","bookingUrl":"https://example.com/book/flight4"},
+  {"id":"r7","from":"London","to":"Berlin","mode":"train","operator":"DB","price":140,"durationMinutes":520,"transfers":2,"departureTime":"05:30","arrivalTime":"15:10","bookingUrl":"https://example.com/book/train3"},
+  {"id":"r8","from":"Paris","to":"Rome","mode":"flight","operator":"ITA Airways","price":77,"durationMinutes":125,"transfers":0,"departureTime":"10:00","arrivalTime":"12:35","bookingUrl":"https://example.com/book/flight5"},
+  {"id":"r9","from":"Paris","to":"Barcelona","mode":"train","operator":"SNCF","price":88,"durationMinutes":390,"transfers":1,"departureTime":"07:00","arrivalTime":"13:30","bookingUrl":"https://example.com/book/train4"},
+  {"id":"r10","from":"Paris","to":"Barcelona","mode":"flight","operator":"Vueling","price":54,"durationMinutes":95,"transfers":0,"departureTime":"16:00","arrivalTime":"17:55","bookingUrl":"https://example.com/book/flight6"},
+  {"id":"r11","from":"Berlin","to":"Prague","mode":"train","operator":"ČD","price":34,"durationMinutes":260,"transfers":0,"departureTime":"08:40","arrivalTime":"13:00","bookingUrl":"https://example.com/book/train5"},
+  {"id":"r12","from":"Berlin","to":"Vienna","mode":"bus","operator":"FlixBus","price":39,"durationMinutes":480,"transfers":0,"departureTime":"06:00","arrivalTime":"14:00","bookingUrl":"https://example.com/book/bus1"},
+  {"id":"r13","from":"Amsterdam","to":"Vienna","mode":"flight","operator":"Austrian","price":91,"durationMinutes":110,"transfers":0,"departureTime":"18:20","arrivalTime":"20:10","bookingUrl":"https://example.com/book/flight7"},
+  {"id":"r14","from":"Amsterdam","to":"Rome","mode":"flight","operator":"KLM","price":96,"durationMinutes":130,"transfers":0,"departureTime":"09:00","arrivalTime":"11:40","bookingUrl":"https://example.com/book/flight8"}
+]
