@@ -17,6 +17,13 @@ EuroHop is a multi-page React + TypeScript + Vite app for finding cheap European
    npm run build
    ```
 
+## What’s new
+
+- **Large city coverage**: 80+ European cities (`src/data/cities.ts`) with generated route options so most city-to-city combinations work in mock mode.
+- **Provider architecture**: pluggable providers in `src/services/providers/`.
+- **Skyscanner integration scaffold**: `skyscannerProvider.ts` wired via RapidAPI environment variables with automatic mock fallback.
+- **Refined UI**: upgraded visual design (glass/gradient cards, better hierarchy, more readable controls).
+
 ## Routes
 
 - `/` Home (search + recommendation input)
@@ -45,15 +52,45 @@ Stay-duration heuristic:
 
 ## Data providers and mock mode
 
-- Mock source: `src/data/mockRoutes.json`
+- Cities source: `src/data/cities.ts`
+- Mock seed routes: `src/data/mockRoutes.json`
 - Destination metadata: `src/data/destinations.ts`
-- Transport service abstraction: `src/services/transportService.ts`
+- Service abstraction: `src/services/transportService.ts`
+- Providers:
+  - `src/services/providers/mockProvider.ts`
+  - `src/services/providers/skyscannerProvider.ts`
 
-`Settings` includes `Use mock data` toggle. Real providers can be added by replacing the placeholder block in `getRoutes` with API clients.
+`Settings` includes provider selection and `Force mock data` toggle.
+
+## Skyscanner API setup
+
+Create `.env` in project root:
+
+```bash
+VITE_RAPIDAPI_KEY=your_key_here
+# optional override
+VITE_SKYSCANNER_HOST=skyscanner89.p.rapidapi.com
+```
+
+Then in Settings:
+
+1. Select provider = **Skyscanner**
+2. Turn off **Force mock data**
+
+If API limits or parsing fails, EuroHop automatically falls back to mock routes.
 
 ## Add a new data provider
 
-1. Create a provider client in `src/services/` (e.g., `amadeusProvider.ts`).
+1. Create provider client in `src/services/providers/` implementing `TransportProvider`.
 2. Normalize output to `RouteOption` shape (`src/types/index.ts`).
-3. Call provider in `getRoutes` when `useMockData` is false.
-4. Keep mock fallback for offline / rate-limit resilience.
+3. Register/select provider in `transportService.ts`.
+4. Keep mock fallback for resilience.
+
+## Deploy to Netlify
+
+Yes — you can deploy EuroHop to Netlify.
+
+- Build command: `npm run build`
+- Publish directory: `dist`
+
+SPA rewrites are included via both `public/_redirects` and `netlify.toml`.

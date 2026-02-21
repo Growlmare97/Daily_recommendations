@@ -17,7 +17,8 @@ const defaultSettings: AppSettings = {
   currency: 'EUR',
   defaultDepartureCity: 'London',
   defaultModes: ['flight', 'train'],
-  useMockData: true
+  useMockData: true,
+  provider: 'mock'
 };
 
 const AppContext = createContext<AppState | undefined>(undefined);

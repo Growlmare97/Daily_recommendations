@@ -23,25 +23,26 @@ export function RecommendationPage() {
       .catch(() => setState({ loading: false, error: 'Failed to fetch routes.' }));
   }, [lastSearch, settings, navigate]);
 
-  if (state.loading) return <p>Loading recommendation...</p>;
-  if (state.error || !state.rec || !lastSearch) return <p>{state.error}</p>;
+  if (state.loading) return <p className="panel">Loading recommendation...</p>;
+  if (state.error || !state.rec || !lastSearch) return <p className="panel">{state.error}</p>;
 
-  const stay = estimateStay(state.rec.destination, state.rec.bestRoute);
-  const budget = budgetBands(state.rec.bestRoute);
+  const rec = state.rec;
+  const stay = estimateStay(rec.destination, rec.bestRoute);
+  const budget = budgetBands(rec.bestRoute);
 
   return (
-    <section className="panel">
-      <h2>Recommended: {state.rec.destination.city}, {state.rec.destination.country}</h2>
-      <p><strong>Route:</strong> €{state.rec.bestRoute.price} · {Math.floor(state.rec.bestRoute.durationMinutes / 60)}h {state.rec.bestRoute.durationMinutes % 60}m · {state.rec.bestRoute.transfers} transfer(s) · {state.rec.bestRoute.operator}</p>
-      <p>{state.rec.bestRoute.departureTime} → {state.rec.bestRoute.arrivalTime}</p>
-      <p><strong>Why this pick?</strong> {whyThisPick(state.rec.bestRoute)}</p>
+    <section className="panel elevated">
+      <h2>Recommended: {rec.destination.city}, {rec.destination.country}</h2>
+      <p><strong>Cheapest route:</strong> €{rec.bestRoute.price} · {Math.floor(rec.bestRoute.durationMinutes / 60)}h {rec.bestRoute.durationMinutes % 60}m · {rec.bestRoute.transfers} transfer(s)</p>
+      <p>{rec.bestRoute.operator} ({rec.bestRoute.source}) · {rec.bestRoute.departureTime} → {rec.bestRoute.arrivalTime}</p>
+      <p><strong>Why this pick?</strong> {whyThisPick(rec.bestRoute)}</p>
       <h3>Top attractions</h3>
-      <ul>{Object.values(state.rec.destination.attractions).flat().slice(0, 10).map((a) => <li key={a}>{a}</li>)}</ul>
+      <ul>{Object.values(rec.destination.attractions).flat().slice(0, 10).map((a) => <li key={a}>{a}</li>)}</ul>
       <p><strong>Suggested stay:</strong> {stay.days} — {stay.explanation}</p>
       <p><strong>Daily budget:</strong> Budget €{budget.budget}, Midrange €{budget.mid}</p>
       <div className="actions">
-        <Link to={`/transport/${lastSearch.from}/${state.rec.destination.city}`}>View transport details</Link>
-        <button onClick={() => saveTrip({ id: `${lastSearch.from}-${state.rec.destination.city}-${lastSearch.startDate}`, from: lastSearch.from, to: state.rec.destination.city, startDate: lastSearch.startDate, endDate: lastSearch.endDate, route: state.rec.bestRoute })}>Save trip</button>
+        <Link to={`/transport/${encodeURIComponent(lastSearch.from)}/${encodeURIComponent(rec.destination.city)}`}>View transport details</Link>
+        <button onClick={() => saveTrip({ id: `${lastSearch.from}-${rec.destination.city}-${lastSearch.startDate}`, from: lastSearch.from, to: rec.destination.city, startDate: lastSearch.startDate, endDate: lastSearch.endDate, route: rec.bestRoute })}>Save trip</button>
         <button onClick={() => navigate('/')}>Try another recommendation</button>
       </div>
     </section>
